@@ -9,7 +9,7 @@ doc = Nokogiri::HTML(IO.read(file)
 
 is_single = doc.css('body > ul').length.zero?
 
-puts "This is #{'not' if is_single }a multiple meaning word."
+puts "This is #{'not ' if is_single }a multiple meaning word."
 
 if is_single
     data = []

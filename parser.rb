@@ -14,6 +14,7 @@ class Parser
   end
 
   def parse
+    puts valid? == true
     if single?
       parse_single
     else
@@ -63,11 +64,16 @@ class Parser
   end
 
   private
+  def valid?
+    @doc.css('title').inner_text.scan /error/
+  end
+
+  private
   def single?
     @doc.css('body > ul').length.zero?
   end
 end
 
-result = Parser.new('single.html').parse
+result = Parser.new('error.html').parse
 
-puts JSON.pretty_generate(result)
+#puts JSON.pretty_generate(result)

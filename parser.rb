@@ -5,16 +5,17 @@ class Parser
 
   META_REGEX = /^([a-z]{1,4}+\.[ ])+/
 
-  def initialize(filename)
-    @doc = Nokogiri::HTML(IO.read(filename)
+  def initialize(rae_data)
+    @doc = Nokogiri::HTML(rae_data
                       .gsub!(/[\n]+/, '')
                       .gsub!(/[ ]{1,}+/, ' '))
 
-    puts "This is #{'not ' if single? }a multiple meaning word."
   end
 
   def parse
-    puts valid? == true
+
+    return {:error => "Word does not exist. Sorry."} if !valid? 
+    
     if single?
       parse_single
     else
@@ -30,8 +31,7 @@ class Parser
   def parse_single
     data = []
     result = {:id => @doc.css('body > div > a').first['name'].to_i, :data => data}
-    # TODO: Improve FSM. 
-    state = :entry
+    state = :entry # TODO. Imprive FSM syntax.
     index = -1 # HACK(javierhonduco)
 
     @doc.css('body > div > p').each do |entry|
@@ -69,11 +69,7 @@ class Parser
 
   private
   def valid?
-    @doc.css('title').inner_text.scan /error/
+    (@doc.css('title').inner_text =~/error/).nil?
   end
 
 end
-
-result = Parser.new('error.html').parse
-
-#puts JSON.pretty_generate(result)

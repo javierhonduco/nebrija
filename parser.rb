@@ -9,13 +9,12 @@ class Parser
     @doc = Nokogiri::HTML(rae_data
                       .gsub!(/[\n]+/, '')
                       .gsub!(/[ ]{1,}+/, ' '))
-
   end
 
   def parse
 
     return {:error => "Word does not exist. Sorry."} if !valid? 
-    
+
     if single?
       parse_single
     else
@@ -31,7 +30,7 @@ class Parser
   def parse_single
     data = []
     result = {:id => @doc.css('body > div > a').first['name'].to_i, :data => data}
-    state = :entry # TODO. Imprive FSM syntax.
+    state = :entry # TODO. Improve FSM syntax.
     index = -1 # HACK(javierhonduco)
 
     @doc.css('body > div > p').each do |entry|

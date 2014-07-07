@@ -1,8 +1,0 @@
-source 'https://rubygems.org'
-gem 'nokogiri'
-gem 'rack'
-gem 'sinatra'
-gem 'data_mapper'
-gem 'dm-sqlite-adapter'
-gem 'shotgun'
-gem 'redis'

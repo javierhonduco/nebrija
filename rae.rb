@@ -1,10 +1,44 @@
 require './parser.rb'
 require 'httparty'
-require 'open-uri'
-
-user_agent = 'Mozilla/5.0 (Android; Mobile; rv:30.0) Gecko/30.0 Firefox/30.0'
 
 
-puts open('http://lema.rae.es/drae/srv/search?val=amor').read
+class Rae
+
+	SEARCH_URL = 'http://lema.rae.es/drae/srv/search?val='
+
+	def initialize()
+		
+	end
+
+	def search(word)
+		raise 'NotImplemtedError'
+	end
+end
 
 
+class FileRae < Rae
+
+	def initialize()
+		
+	end
+
+	def search(file)
+		html = IO.read("#{file}.html")
+		Parser.new(html).parse
+	end
+end
+
+class HttpRae < Rae
+
+	def initialize()
+		
+	end
+
+	def search(word)
+		html = HTTParty.get("#{SEARCH_URL}#{word}").body
+		Parser.new(html).parse
+	end
+end
+
+
+puts FileRae.new.search('error')

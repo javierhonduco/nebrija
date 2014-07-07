@@ -47,6 +47,3 @@ else
     end 
     puts JSON.pretty_generate(multiple_result)
 end
-# doc.search('h3.r a.l', '//h3/a').each do |link|
-# puts link.content
-# end

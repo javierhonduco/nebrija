@@ -22,6 +22,10 @@ class Parser
     end
   end
 
+  def single?
+    @doc.css('body > ul').length.zero?
+  end
+
   private 
   def parse_single
     data = []
@@ -68,10 +72,6 @@ class Parser
     @doc.css('title').inner_text.scan /error/
   end
 
-  private
-  def single?
-    @doc.css('body > ul').length.zero?
-  end
 end
 
 result = Parser.new('error.html').parse

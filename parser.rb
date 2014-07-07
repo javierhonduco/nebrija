@@ -52,14 +52,14 @@ class Parser
 
   private
   def parse_multiple
-    result = []
+    multiple_result = []
     @doc.css('body > ul > li > a').each do |word|
       multiple_result << {
         :word => word.css('span').first.inner_text,
         :href => word['href'].gsub(/search\?id=/, '')
       }
     end 
-    result
+    multiple_result
   end
 
   private

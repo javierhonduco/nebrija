@@ -6,7 +6,7 @@ class Rae
 
   SEARCH_URL = 'http://lema.rae.es/drae/srv/search?val='
 
-  def initialize()
+  def initialize
     
   end
 
@@ -18,7 +18,7 @@ end
 
 class FileRae < Rae
   
-  def initialize()
+  def initialize
     
   end
 
@@ -30,7 +30,7 @@ end
 
 class HttpRae < Rae
 
-  def initialize()
+  def initialize
     
   end
 

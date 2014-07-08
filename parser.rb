@@ -7,7 +7,7 @@ class Parser
   def initialize(rae_data)
     @doc = Nokogiri::HTML(rae_data
                       .gsub!(/[\n]+/, '')
-                      .gsub!(/[ ]{1,}+/, ' '))
+                      .gsub!(/[ ]{2,}+/, ' '))
   end
 
   def parse

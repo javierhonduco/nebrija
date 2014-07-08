@@ -40,7 +40,6 @@ class Parser
         index+=1
       else
         text = entry.inner_text.strip.gsub(/[0-9]+\.[ ]/, '')
-        gender = text[0]
         next if text[0] == '(' # Del latín, Nil.    
         unparsed_meta = text.scan META_REGEX
         text = text.gsub(META_REGEX, '')

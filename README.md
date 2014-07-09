@@ -1,9 +1,9 @@
-DESCRIPTION
+Description
 ===========
 
 Blablablá.
 
-SEARCHING
+Searching
 =========
 ```bash
 $ ruby app <word>

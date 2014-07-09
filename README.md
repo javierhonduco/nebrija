@@ -3,6 +3,12 @@ DESCRIPTION
 
 Blablablá.
 
+SEARCHING
+=========
+```bash
+$ ruby app <word>
+```
+
 API
 ===
 ```ruby

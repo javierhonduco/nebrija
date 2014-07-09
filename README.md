@@ -6,7 +6,7 @@ Blablablá.
 Searching
 =========
 ```bash
-$ ruby app <word>
+$ ruby app.rb <word>
 ```
 
 API

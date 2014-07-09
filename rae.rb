@@ -8,7 +8,7 @@ class Rae
   BASE_EXTENSION = 'html'
 
   def search(word)
-    Parser.new(query(word)).parse
+    Parser.new(query(word), word).parse
   end
 
   private

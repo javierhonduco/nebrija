@@ -21,6 +21,8 @@ TODO
 ====
 * Check it works properly.
 * Improve the code.
+* Handle errors.
+* Set a request timeout.
 * Get it working without using cURL directly.
 * Doc.
 * Improve the API.

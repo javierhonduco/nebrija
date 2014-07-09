@@ -43,7 +43,6 @@ class Parser
         next if text[0] == '(' # Del latín, Nil.    
         unparsed_meta = text.scan META_REGEX
         text = text.gsub(META_REGEX, '')
-        number = text[0]
         data[index][:meanings] << {
           :data => text, 
           :meta => unparsed_meta.join,

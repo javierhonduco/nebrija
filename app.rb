@@ -1,5 +1,6 @@
+require 'json'
 require './rae.rb'
 
 puts 'Oh, hai!'
 puts
-puts HTTPRae.new.search(ARGV[0])
+puts JSON.pretty_generate(HTTPRae.new.search(ARGV[0]))

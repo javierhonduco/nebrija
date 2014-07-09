@@ -2,7 +2,7 @@ require 'nokogiri'
 
 class Parser
   
-  META_REGEX = /^([a-z]{1,4}+\.[ ])+/
+  META_REGEX = /^([a-zA-Z]{1,4}+\.[ ]{1,2})+/
 
   def initialize(rae_data)
     @doc = Nokogiri::HTML(rae_data
@@ -44,7 +44,10 @@ class Parser
         unparsed_meta = text.scan META_REGEX
         text = text.gsub(META_REGEX, '')
         number = text[0]
-        data[index][:meanings] << text if !text.nil? and text != ''
+        data[index][:meanings] << {
+          :data => text, 
+          :meta => unparsed_meta.join,
+        } if !text.nil? and text != ''
         state = :definitions
       end
       state = :entry

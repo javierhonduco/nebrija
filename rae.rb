@@ -46,10 +46,3 @@ class HTTPRae < Rae
     --compressed`
   end
 end
-
-
-
-#puts FileRae.new.search('mocks/error')
-puts HTTPRae.new.search(ARGV[0])
-
-

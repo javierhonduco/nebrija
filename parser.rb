@@ -12,7 +12,7 @@ class Parser
 
   def parse
 
-    return {:error => "Word does not exist. Sorry."} if !valid? 
+    return {:error => 'Word does not exist. Sorry.'} if !valid? 
 
     if single?
       parse_single

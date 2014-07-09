@@ -4,9 +4,6 @@ require 'typhoeus'
 
 class Rae
 
-  SEARCH_URL = 'http://lema.rae.es/drae/srv/search?val='
-  BASE_EXTENSION = 'html'
-
   def search(word)
     Parser.new(query(word), word).parse
   end
@@ -19,6 +16,8 @@ end
 
 
 class FileRae < Rae
+  BASE_EXTENSION = 'html'
+
   private
   def query(file)
     IO.read("#{file}.{BASE_EXTENSION}}")
@@ -28,10 +27,11 @@ end
 
 class HTTPRae < Rae
   USER_AGENT = 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36'
+  SEARCH_URL = 'http://lema.rae.es/drae/srv/search?val='
 
   private
   def query(word)
-    `curl -s 'http://lema.rae.es/drae/srv/search?val=#{word}' \
+    `curl -s '#{SEARCH_URL}#{word}' \
     -H 'Pragma: no-cache'  \
     -H 'Origin: http://lema.rae.es' \
     -H 'Accept-Encoding: gzip,deflate,sdch' \

@@ -1,7 +1,7 @@
 require 'nokogiri'
 
 class Parser
-
+  
   META_REGEX = /^([a-z]{1,4}+\.[ ])+/
 
   def initialize(rae_data)

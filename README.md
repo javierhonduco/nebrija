@@ -14,7 +14,7 @@ API
 ```ruby
 require './rae.rb'
 res = HTTPRae.new.search('word')
-puts res # print the results
+puts res # prints the results
 ```
 
 TODO

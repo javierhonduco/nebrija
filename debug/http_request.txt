@@ -1,0 +1,66 @@
+typhoeus
+{
+  "args": {},
+  "data": "",
+  "files": {},
+  "form": {
+    "TS014dfc77_76": "0",
+    "TS014dfc77_cr": "42612abd48551544c72ae36bc40f440a:kkmj:QG60Q2v4:1477350835",
+    "TS014dfc77_ct": "0",
+    "TS014dfc77_id": "3",
+    "TS014dfc77_md": "1",
+    "TS014dfc77_pd": "0",
+    "TS014dfc77_rf": "0"
+  },
+  "headers": {
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+    "Accept-Encoding": "gzip,deflate,sdch",
+    "Accept-Language": "es-ES,es;q=0.8,en;q=0.6",
+    "Cache-Control": "no-cache",
+    "Connection": "close",
+    "Content-Length": "173",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Host": "httpbin.org",
+    "Origin": "http://lema.rae.es",
+    "Referer": "http://lema.rae.es/drae/srv/search?val=a",
+    "User-Agent": "SpecialAgent",
+    "X-Request-Id": "9cd03a16-7ccc-4eee-b74f-90382b7b9e17"
+  },
+  "json": null,
+  "origin": "88.1.172.4",
+  "url": "http://httpbin.org/post"
+}
+
+curl
+{
+  "args": {},
+  "data": "",
+  "files": {},
+  "form": {
+    "------------------------------940ccf32e93b\r\nContent-Disposition: form-data; name": "\"TS014dfc77_id\"\r\n\r\n3",
+    "TS014dfc77_76": "0",
+    "TS014dfc77_cr": "42612abd48551544c72ae36bc40f440a:kkmj:QG60Q2v4:1477350835",
+    "TS014dfc77_ct": "0",
+    "TS014dfc77_md": "1",
+    "TS014dfc77_pd": "0\r\n------------------------------940ccf32e93b--\r\n",
+    "TS014dfc77_rf": "0"
+  },
+  "headers": {
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+    "Accept-Encoding": "gzip,deflate,sdch",
+    "Accept-Language": "es-ES,es;q=0.8,en;q=0.6",
+    "Cache-Control": "no-cache",
+    "Connection": "close",
+    "Content-Length": "307",
+    "Content-Type": "application/x-www-form-urlencoded; boundary=----------------------------940ccf32e93b",
+    "Host": "httpbin.org",
+    "Origin": "http://lema.rae.es",
+    "Pragma": "no-cache",
+    "Referer": "http://lema.rae.es/drae/srv/search?val=a",
+    "User-Agent": "SpecialAgent",
+    "X-Request-Id": "1f845908-d6a5-4581-872d-bfaa046d6fa8"
+  },
+  "json": null,
+  "origin": "88.1.172.4",
+  "url": "http://httpbin.org/post"
+}

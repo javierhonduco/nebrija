@@ -26,3 +26,4 @@ TODO
 * Get it working without using cURL directly.
 * Doc.
 * Improve the API.
+* Add Gemfile.

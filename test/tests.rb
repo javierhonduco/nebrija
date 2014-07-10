@@ -4,8 +4,7 @@ require '../rae.rb' # TODO: Fix relative requires.
 class TestMockedParserBasic < Test::Unit::TestCase
 
   def test_error_basic
-        assert_not_nil FileRae.new.search('error.html')[:error] 
-
+    assert_not_nil FileRae.new.search('error.html')[:error] 
   end
   
   def test_single_basic

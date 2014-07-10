@@ -33,8 +33,10 @@ class HTTPRae < Rae
 
   private
   def query(word)
+    @word = word
+    
     params = 'id='
-    params = 'val=' if val?(word)
+    params = 'val=' if val?
 
     `curl -s '#{SEARCH_URL}#{params}#{word}' \
     -H 'Pragma: no-cache'  \
@@ -51,8 +53,8 @@ class HTTPRae < Rae
     --compressed`
   end
 
-  def val?(word)
-    (word =~ ID_REGEX).nil?
+  def val?
+    (@word =~ ID_REGEX).nil?
   end
    
 end

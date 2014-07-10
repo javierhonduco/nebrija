@@ -20,7 +20,7 @@ class FileRae < Rae
 
   private
   def query(file)
-    IO.read("#{file}.#{BASE_EXTENSION}}")
+    IO.read("#{file}.#{BASE_EXTENSION}")
   end
 end
 

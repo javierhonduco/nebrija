@@ -5,6 +5,11 @@ Blablablá.
 
 Searching
 =========
+Run:
+```bash
+$ gem install nokogiri typhoeus
+```
+Then clone the repo and you're ready to go.
 ```bash
 $ ruby app.rb <word>
 ```

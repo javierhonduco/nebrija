@@ -3,11 +3,9 @@ require '../rae.rb' # TODO: Fix relative requires.
 
 class TestMockedParserBasic < Test::Unit::TestCase
 
-  def test_single_basic_id
-  end
-
   def test_error_basic
-    assert_not_nil FileRae.new.search('error.html')[:error] 
+        assert_not_nil FileRae.new.search('error.html')[:error] 
+
   end
   
   def test_single_basic
@@ -34,8 +32,12 @@ end
 
 class TestMockedParserBasic < Test::Unit::TestCase
 
+  def test_single_basic_id
+    assert_not_nil HTTPRae.new.search('MHpGWYJ6YDXX2bw9Ghwm')[:data]
+  end
+
   def test_error_basic
-    assert_not_nil HTTPRae.new.search('jijiijij12')[:error] 
+    assert_not_nil HTTPRae.new.search('jddhfgsd')[:error] 
   end
   
   def test_single_basic

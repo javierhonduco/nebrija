@@ -1,4 +1,6 @@
-require './parser.rb'
+CURRENT_DIR = File.dirname(__FILE__)
+
+require "#{CURRENT_DIR}/parser.rb"
 require 'typhoeus'
 
 
@@ -16,20 +18,20 @@ end
 
 
 class FileRae < Rae
-  BASE_EXTENSION = 'html'
 
   private
   def query(file)
-    IO.read("#{file}.#{BASE_EXTENSION}")
+    IO.read("#{CURRENT_DIR}/mocks/#{file}")
   end
 end
 
 
+#TODO: Refactorize web clients.
 class CURLRae < Rae
   USER_AGENT = 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36'
   SEARCH_URL = 'http://lema.rae.es/drae/srv/search?'
 
-  ID_REGEX = /[A-Z0-9]+[a-z]+/
+  ID_REGEX = /[0-9]/
 
   private
   def query(word)
@@ -50,17 +52,21 @@ class CURLRae < Rae
 end
 
 
-
 class HTTPRae < Rae
   USER_AGENT = 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36'
   SEARCH_URL = 'http://lema.rae.es/drae/srv/search?'
   REQUEST_TIMEOUT = 
-  ID_REGEX = /[A-Z0-9]+[a-z]+/
+  ID_REGEX = /[0-9]/
 
   private
   def query(word)
+    @word = word
+
+    params = 'id=' 
+    params = 'val=' if val?
+    puts val?
     response = Typhoeus::Request.post(
-      "http://lema.rae.es/drae/srv/search?val=#{word}",
+      "http://lema.rae.es/drae/srv/search?#{params}#{word}",
       body: build_headers
     )
     response.body

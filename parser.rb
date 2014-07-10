@@ -58,7 +58,6 @@ class Parser
     result
   end
 
-  private
   def parse_multiple
     multiple_result = []
     @doc.css('body > ul > li > a').each do |word|
@@ -70,9 +69,7 @@ class Parser
     multiple_result
   end
 
-  private
   def valid?
     (@doc.css('title').inner_text =~/error/).nil?
   end
-
 end

@@ -1,5 +1,6 @@
 require 'typhoeus'
 
+
 class RAESearch
 
   SEARCH_URL = 'http://lema.rae.es/drae/srv/search?val='
@@ -9,34 +10,20 @@ class RAESearch
   def query(word)
 
     response = Typhoeus::Request.post(
-      SEARCH_URL + word, 
-      cookiefile: 'lovecookies', 
-      cookiejar: 'lovecookies', 
-      followlocation: true,
-      accept_encoding: 'gzip',
+      "http://lema.rae.es/drae/srv/search?val=#{word}", #
       body: {
-        'TS014dfc77_cr' => CHALLENGE,
-        'TS014dfc77_id' => 3,
-        'TS014dfc77_76' => 0,
-        'TS014dfc77_md' => 1,
-        'TS014dfc77_rf' => 0,
-        'TS014dfc77_ct' => 0,
-        'TS014dfc77_pd' => 0
-      },
-      headers: {
-        'User-Agent' => USER_AGENT,
-        'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-        'Cache-Control' => 'no-cache',
-        'Connection' => 'keep-alive',
-        'Referer' => SEARCH_URL + word,
-        'Accept-Encoding' => 'gzip,deflate,sdch',
-        'Accept-Language' => 'es-ES,es;q=0.8,en;q=0.6',
-        'Origin' => 'http://lema.rae.es', 
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        'Content-Disposition' => 'form-data', 
-        'name' => 'control-name'
-      }
-    )
+              'TS014dfc77_id' => 3,
+              'TS014dfc77_cr' => '42612abd48551544c72ae36bc40f440a%3Akkmj%3AQG60Q2v4%3A1477350835',
+              'TS014dfc77_76' => 0,
+              'TS014dfc77_md' => 1,
+              'TS014dfc77_rf' => 0,
+              'TS014dfc77_ct' => 0,
+              'TS014dfc77_pd' => 0
+            }.map {|key, value|
+              "#{key}=#{value}"
+            }.join('&'))
+
+    
     response.body
   end
 end

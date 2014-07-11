@@ -27,7 +27,7 @@ puts res # prints the results
 TODO
 ====
 * Check it works properly.
-* ~~S-ea-rch by id.~~
+* ~~Search by id.~~
 * Improve the code.
 * Handle errors.
 * Set a request timeout.

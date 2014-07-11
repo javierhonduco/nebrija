@@ -3,21 +3,23 @@ Description
 
 Blablablá.
 
-Searching
-=========
+Install
+=======
 Run:
 ```bash
-$ gem install nokogiri typhoeus
+$ gem install nebrija
 ```
-Then clone the repo and you're ready to go.
+
+Searching
+=========
 ```bash
-$ ruby app.rb <word>
+$ nebrija <word>
 ```
 
 API
 ===
 ```ruby
-require './rae.rb'
+require 'nebrija'
 res = HTTPRae.new.search('word')
 puts res # prints the results
 ```

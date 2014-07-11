@@ -10,7 +10,7 @@ class Rae
 
   private
   def query(word)
-    raise 'NotImplemetedError'
+    raise 'NotImplementedError'
   end
 end
 

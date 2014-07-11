@@ -1,6 +1,4 @@
-CURRENT_DIR = File.dirname(__FILE__)
-
-require "#{CURRENT_DIR}/parser.rb"
+require 'nebrija/parser'
 require 'typhoeus'
 
 
@@ -21,7 +19,7 @@ class FileRae < Rae
 
   private
   def query(file)
-    IO.read("#{CURRENT_DIR}/mocks/#{file}")
+    IO.read(file)
   end
 end
 

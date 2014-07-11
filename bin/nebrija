@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'nebrija'
+
+puts 'Oh, hai!'
+puts 'In future versions this will print something more human readable.'
+puts
+puts JSON.pretty_generate(HTTPRae.new.search(ARGV[0]))

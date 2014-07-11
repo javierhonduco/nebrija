@@ -1,30 +1,32 @@
 require 'test/unit'
-require '../rae.rb' # TODO: Fix relative requires.
+require 'nebrija' 
+
+MOCKS_DIR = "#{Dir.pwd}/test/mocks"
 
 class TestMockedParserBasic < Test::Unit::TestCase
 
   def test_error_basic
-    assert_not_nil FileRae.new.search('error.html')[:error] 
+    assert_not_nil FileRae.new.search("#{MOCKS_DIR}/error.html")[:error] 
   end
   
   def test_single_basic
-    assert_not_nil FileRae.new.search('single.html')[:data]
+    assert_not_nil FileRae.new.search("#{MOCKS_DIR}/single.html")[:data]
   end
 
   def test_multiple_basic
-    assert FileRae.new.search('multiple.html').length == 2
+    assert FileRae.new.search("#{MOCKS_DIR}/multiple.html").length == 2
   end
 end
 
 class TestMockedParserContent < Test::Unit::TestCase
   
   def test_single_basic
-    assert FileRae.new.search('single.html')[:data].length > 20
+    assert FileRae.new.search("#{MOCKS_DIR}/single.html")[:data].length > 20
   end
 
   def test_multiple_basic
-    assert FileRae.new.search('multiple.html')[0][:word] == 'bancar' 
-    assert FileRae.new.search('multiple.html')[1][:word] == 'banco'  
+    assert FileRae.new.search("#{MOCKS_DIR}/multiple.html")[0][:word] == 'bancar' 
+    assert FileRae.new.search("#{MOCKS_DIR}/multiple.html")[1][:word] == 'banco'  
   end
 end
 

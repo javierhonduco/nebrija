@@ -27,11 +27,11 @@ puts res # prints the results
 TODO
 ====
 * Check it works properly.
-* Search by id.
+* ~~S-ea-rch by id.~~
 * Improve the code.
 * Handle errors.
 * Set a request timeout.
-* Get it working without using cURL directly.
+* ~~Get it working without using cURL directly.~~
 * Doc.
 * Improve the API.
-* Add Gemfile.
+* ~~Add Gemfile.~~

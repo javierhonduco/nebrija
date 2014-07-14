@@ -81,7 +81,7 @@ class Parser
     {
       :status => 'success', 
       :type => type, 
-      :reponse => response
+      :response => response
     }
   end
 end

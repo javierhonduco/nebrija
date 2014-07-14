@@ -6,27 +6,27 @@ MOCKS_DIR = "#{Dir.pwd}/test/mocks"
 class TestMockedParserBasic < Test::Unit::TestCase
 
   def test_error_basic
-    assert_not_nil FileRae.new.search("#{MOCKS_DIR}/error.html")[:error] 
+    assert_equal FileRae.new.search("#{MOCKS_DIR}/error.html")[:status] 
   end
   
   def test_single_basic
-    assert_not_nil FileRae.new.search("#{MOCKS_DIR}/single.html")[:data]
+    assert_not_nil FileRae.new.search("#{MOCKS_DIR}/single.html")[:response][:data]
   end
 
   def test_multiple_basic
-    assert FileRae.new.search("#{MOCKS_DIR}/multiple.html").length == 2
+    assert FileRae.new.search("#{MOCKS_DIR}/multiple.html")[:reponse].length == 2
   end
 end
 
 class TestMockedParserContent < Test::Unit::TestCase
   
   def test_single_basic
-    assert FileRae.new.search("#{MOCKS_DIR}/single.html")[:data].length > 20
+    assert FileRae.new.search("#{MOCKS_DIR}/single.html")[:response][:data].length > 20
   end
 
   def test_multiple_basic
-    assert FileRae.new.search("#{MOCKS_DIR}/multiple.html")[0][:word] == 'bancar' 
-    assert FileRae.new.search("#{MOCKS_DIR}/multiple.html")[1][:word] == 'banco'  
+    assert FileRae.new.search("#{MOCKS_DIR}/multiple.html")[:response][0][:word] == 'bancar' 
+    assert FileRae.new.search("#{MOCKS_DIR}/multiple.html")[:response][1][:word] == 'banco'  
   end
 end
 
@@ -34,30 +34,30 @@ end
 class TestMockedParserBasic < Test::Unit::TestCase
 
   def test_single_basic_id
-    assert_not_nil HTTPRae.new.search('MHpGWYJ6YDXX2bw9Ghwm')[:data]
+    assert_not_nil HTTPRae.new.search('MHpGWYJ6YDXX2bw9Ghwm')[:response][:data]
   end
 
   def test_error_basic
-    assert_not_nil HTTPRae.new.search('jddhfgsd')[:error] 
+    assert HTTPRae.new.search('jddhfgsd')[:status] == 'error'
   end
   
   def test_single_basic
-    assert_not_nil HTTPRae.new.search('a')[:data]
+    assert_not_nil HTTPRae.new.search('a')[:response][:data]
   end
 
   def test_multiple_basic
-    assert HTTPRae.new.search('banco').length == 2
+    assert HTTPRae.new.search('banco')[:response].length == 2
   end
 end
 
 class TestParserContent < Test::Unit::TestCase
   
   def test_single_basic
-    assert HTTPRae.new.search('a')[:data].length > 4
+    assert HTTPRae.new.search('a')[:response][:data].length > 4
   end
 
   def test_multiple_basic
-    assert HTTPRae.new.search('banco')[0][:word] == 'bancar' 
-    assert HTTPRae.new.search('banco')[1][:word] == 'banco'  
+    assert HTTPRae.new.search('banco')[:response][0][:word] == 'bancar' 
+    assert HTTPRae.new.search('banco')[:response][1][:word] == 'banco'  
   end
 end

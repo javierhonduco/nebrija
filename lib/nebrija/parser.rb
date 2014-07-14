@@ -15,7 +15,6 @@ class Parser
 
     return {:status => 'error', :message => 'Word does not exist. Sorry.'} if !valid? 
     perform
-
   end
 
   def single?

@@ -1,7 +1,7 @@
 require 'test/unit'
 require 'nebrija' 
 
-MOCKS_DIR = "#{Dir.pwd}/test/mocks"
+MOCKS_DIR = "#{File.expand_path(File.dirname(__FILE__))}/mocks"
 
 class TestMockedParserBasic < Test::Unit::TestCase
 
@@ -21,7 +21,7 @@ end
 class TestMockedParserContent < Test::Unit::TestCase
   
   def test_single_basic
-    assert FileRae.new.search("#{MOCKS_DIR}/single.html")[:response][:data].length > 20
+    assert FileRae.new.search("#{MOCKS_DIR}/single.html")[:response].length > 20
   end
 
   def test_multiple_basic
@@ -34,7 +34,7 @@ end
 class TestMockedParserBasic < Test::Unit::TestCase
 
   def test_single_basic_id
-    assert_not_nil HTTPRae.new.search('MHpGWYJ6YDXX2bw9Ghwm')[:response][:data]
+    assert_not_nil HTTPRae.new.search('MHpGWYJ6YDXX2bw9Ghwm')[:response]
   end
 
   def test_error_basic
@@ -42,7 +42,7 @@ class TestMockedParserBasic < Test::Unit::TestCase
   end
   
   def test_single_basic
-    assert_not_nil HTTPRae.new.search('a')[:response][:data]
+    assert_not_nil HTTPRae.new.search('a')[:response]
   end
 
   def test_multiple_basic
@@ -53,7 +53,7 @@ end
 class TestParserContent < Test::Unit::TestCase
   
   def test_single_basic
-    assert HTTPRae.new.search('a')[:response][:data].length > 4
+    assert HTTPRae.new.search('a')[:response].length > 4
   end
 
   def test_multiple_basic

@@ -3,7 +3,42 @@
 require 'json'
 require 'nebrija'
 
+
+arg = ARGV.first
+
+if arg.nil?
+  puts 'Type smthg!'
+  return
+end
+
 puts 'Oh, hai!'
-puts 'In future versions this will print something more human readable.'
 puts
-puts JSON.pretty_generate(HTTPRae.new.search(ARGV[0]))
+
+response = HTTPRae.new.search(arg)
+
+status = response[:status]
+
+if status == 'error'
+  puts 'Word does not exist. :(.'
+else 
+  type = response[:type]
+  data = response[:response]
+
+  if type == 'multiple'
+    puts 'We found multiple words matching your search criteria:'
+    puts 'Search by id to find their meaning.'
+    puts 
+    data.each_with_index do |entry, i|
+      puts "#{i+1}. #{entry[:word]} ~> #{entry[:id]}"
+    end
+  else
+    
+    data.each_with_index do |entry, i|
+      puts "#{i+1}. #{entry[:word]}"
+      entry[:meanings].each_with_index do |definitions, j|
+        puts "\t#{j+1}. #{definitions[:word]}"
+        puts "\t\tMeta: #{definitions[:meta]}" if !definitions[:meta].nil?
+      end
+    end 
+  end
+end

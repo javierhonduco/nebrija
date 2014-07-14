@@ -24,8 +24,7 @@ class Parser
 
   private 
   def parse_single
-    data = []
-    result = {:id => @doc.css('body > div > a').first['name'].to_i, :data => data}
+    single_data = []
     state = :entry # TODO. Improve FSM syntax.
     index = -1 # HACK(javierhonduco)
 
@@ -33,7 +32,7 @@ class Parser
       if entry['class'] == 'p' and state == :entry
         word = entry.css('span').inner_text
         word = '=>' if word == ''
-        data << {
+        single_data << {
           :word => word.gsub(/~/, @word).strip.capitalize, 
           :meanings => []
         }
@@ -43,7 +42,7 @@ class Parser
         next if text[0] == '(' # Del latín, Nil.    
         unparsed_meta = text.scan META_REGEX
         text = text.gsub(META_REGEX, '')
-        data[index][:meanings] << {
+        single_data[index][:meanings] << {
           :word => text, 
           :meta => (unparsed_meta.join.strip if unparsed_meta.join.strip != ''),
         } if !text.nil? and text != ''
@@ -51,7 +50,7 @@ class Parser
       end
       state = :entry
     end 
-    result
+    single_data
   end
 
   def parse_multiple

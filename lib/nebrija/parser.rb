@@ -14,12 +14,8 @@ class Parser
   def parse
 
     return {:status => 'error', :message => 'Word does not exist. Sorry.'} if !valid? 
+    perform
 
-    if single?
-      parse_single
-    else
-      parse_multiple
-    end
   end
 
   def single?
@@ -72,4 +68,19 @@ class Parser
   def valid?
     (@doc.css('title').inner_text =~/error/).nil?
   end
+
+  def perform
+    response = nil
+    type = 'single'
+    if single?
+      response = parse_single
+    else
+      response = parse_multiple
+      type = 'multiple'
+    end
+    {
+      :status => 'success', 
+      :type => type, 
+      :reponse => response
+    }
 end

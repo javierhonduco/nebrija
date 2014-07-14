@@ -76,7 +76,7 @@ class Parser
     end
     {
       :status => 'success', 
-      :type => 'single' if single? then 'single' else 'multiple' end,
+      :type => if single? then 'single' else 'multiple' end,
       :response => response
     }
   end

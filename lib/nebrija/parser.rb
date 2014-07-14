@@ -69,16 +69,14 @@ class Parser
 
   def perform
     response = nil
-    type = 'single'
     if single?
       response = parse_single
     else
       response = parse_multiple
-      type = 'multiple'
     end
     {
       :status => 'success', 
-      :type => type, 
+      :type => 'single' if single? then 'single' else 'multiple' end,
       :response => response
     }
   end

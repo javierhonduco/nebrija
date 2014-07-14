@@ -63,7 +63,7 @@ class Parser
     @doc.css('body > ul > li > a').each do |word|
       multiple_result << {
         :word => word.css('span').first.inner_text,
-        :href => word['href'].gsub(/search\?id=/, '')
+        :id => word['href'].gsub(/search\?id=/, '')
       }
     end 
     multiple_result

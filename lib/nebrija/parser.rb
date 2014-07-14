@@ -83,4 +83,5 @@ class Parser
       :type => type, 
       :reponse => response
     }
+  end
 end

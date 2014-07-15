@@ -8,7 +8,7 @@ arg = ARGV.first
 
 if arg.nil?
   puts 'Type smthg!'
-  return
+  abort('Wrong args')
 end
 
 puts 'Oh, hai!'

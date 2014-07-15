@@ -31,6 +31,7 @@ TODO
 * Check it works properly.
 * Doc. (return, hacks...)
 * Improve the code.
+* Add bulk search.
 * Set a request timeout.
 * ~~Search by id.~~
 * ~~Handle errors.~~

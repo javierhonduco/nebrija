@@ -1,16 +1,16 @@
-require 'test/unit'
+require 'minitest/autorun'
 require 'nebrija' 
 
 MOCKS_DIR = "#{File.expand_path(File.dirname(__FILE__))}/mocks"
 
-class TestMockedParserBasic < Test::Unit::TestCase
+class TestMockedParserBasic < Minitest::Test
 
   def test_error_basic
     assert_equal FileRae.new.search("#{MOCKS_DIR}/error.html")[:status] 
   end
   
   def test_single_basic
-    assert_not_nil FileRae.new.search("#{MOCKS_DIR}/single.html")[:response][:data]
+    assert !FileRae.new.search("#{MOCKS_DIR}/single.html")[:response][:data].nil?
   end
 
   def test_multiple_basic
@@ -18,8 +18,8 @@ class TestMockedParserBasic < Test::Unit::TestCase
   end
 end
 
-class TestMockedParserContent < Test::Unit::TestCase
-  
+class TestMockedParserContent < Minitest::Test
+ 
   def test_single_basic
     assert FileRae.new.search("#{MOCKS_DIR}/single.html")[:response].length > 20
   end
@@ -31,10 +31,10 @@ class TestMockedParserContent < Test::Unit::TestCase
 end
 
 
-class TestMockedParserBasic < Test::Unit::TestCase
+class TestMockedParserBasic < Minitest::Test
 
   def test_single_basic_id
-    assert_not_nil HTTPRae.new.search('MHpGWYJ6YDXX2bw9Ghwm')[:response]
+    assert !HTTPRae.new.search('MHpGWYJ6YDXX2bw9Ghwm')[:response].nil?
   end
 
   def test_error_basic
@@ -42,7 +42,7 @@ class TestMockedParserBasic < Test::Unit::TestCase
   end
   
   def test_single_basic
-    assert_not_nil HTTPRae.new.search('a')[:response]
+    assert !HTTPRae.new.search('a')[:response].nil?
   end
 
   def test_multiple_basic
@@ -50,7 +50,7 @@ class TestMockedParserBasic < Test::Unit::TestCase
   end
 end
 
-class TestParserContent < Test::Unit::TestCase
+class TestParserContent < Minitest::Test
   
   def test_single_basic
     assert HTTPRae.new.search('a')[:response].length > 4

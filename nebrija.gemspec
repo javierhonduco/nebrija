@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.add_dependency(%q<typhoeus>)
 
   s.add_development_dependency('rake')
-  s.add_development_dependency('minitest', '~> 4')
+  s.add_development_dependency('minitest', '~> 5')
 
   s.license = 'MIT'
 end

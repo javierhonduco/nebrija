@@ -29,11 +29,12 @@ puts res # prints the results
 TODO
 ----
 * Check it works properly.
-* ~~Search by id.~~
+* Doc. (return, hacks...)
 * Improve the code.
-* Handle errors.
+* Add bulk search.
 * Set a request timeout.
+* ~~Search by id.~~
+* ~~Handle errors.~~
 * ~~Get it working without using cURL directly.~~
-* Doc.
-* Improve the API.
+* ~~Improve the API.~~
 * ~~Add Gemfile.~~

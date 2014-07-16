@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    nebrija (0.0.3)
+    nebrija (0.0.4)
       nokogiri
       typhoeus
 

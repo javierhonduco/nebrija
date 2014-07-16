@@ -32,7 +32,7 @@ class Parser
         word = entry.css('span').inner_text
         word = '=>' if word == ''
         single_data << {
-          :word => word.gsub(/~/, @word).strip.capitalize, 
+          :word => word.strip.capitalize, # gsub(/~/, @word)
           :meanings => []
         }
         index+=1

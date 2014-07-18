@@ -37,7 +37,7 @@ class HTTPRae < Rae
     params = 'val=' if val?
 
     response = Typhoeus::Request.post(
-      "http://lema.rae.es/drae/srv/search?#{params}#{word}",
+      "#{SEARCH_URL}#{params}#{word}",
       body: build_headers
     )
     response.body

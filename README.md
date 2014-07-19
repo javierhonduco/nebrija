@@ -27,7 +27,7 @@ If the request is succesful, the key `type` indicates wheter the result type is 
 
 The response data can be found in the `response` key which is an array.
 
-The response key is formatted as shown below:
+The response data is formatted as shown below:
 * Single responses
 ```ruby
 [{:word=>"banca", :id=>"N4sDS8D9sDXX2ydchkDs"}, {:word=>"bancar", :id=>"MHpGWYJ6YDXX2bw9Ghwm"}, {:word=>"bance", :id=>"dkcRaDoJTDXX2mbtZ21J"}, {:word=>"banco", :id=>"E0yO6yORQDXX2M4zQtJ3"}]

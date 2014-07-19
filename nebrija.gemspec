@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'nebrija'
-  s.version = '0.0.4'
+  s.version = '0.0.5'
   s.executables << 'nebrija'
 
   s.authors = ['@javierhonduco']

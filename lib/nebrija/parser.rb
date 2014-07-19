@@ -1,5 +1,4 @@
 require 'nokogiri'
-
 class Parser
   
   META_REGEX = /^([a-zA-Z]{1,4}+\.[ ]{1,2})+/
@@ -38,12 +37,14 @@ class Parser
         index+=1
       else
         text = entry.inner_text.strip.gsub(/[0-9]+\.[ ]/, '')
-        next if text[0] == '(' # Del latín, Nil.    
+        etymology = text if text[0] == '('
+
         unparsed_meta = text.scan META_REGEX
         text = text.gsub(META_REGEX, '')
         single_data[index][:meanings] << {
-          :word => text, 
-          :meta => (unparsed_meta.join.strip if unparsed_meta.join.strip != ''),
+          :word       => text, 
+          :meta       => (unparsed_meta.join.strip if unparsed_meta.join.strip != ''),
+          :etymology  => etymology
         } if !text.nil? and text != ''
         state = :definitions
       end

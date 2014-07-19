@@ -24,6 +24,7 @@ puts res # prints the results
 `HTTPRae` returns a hash where the key `status` can be `error`|`success`.
 
 If the request is succesful, the key `type` indicates wheter the result type is a single word or multiple  with `single`|`multiple`.
+
 The response data can be found in the `response` key which is an array.
 
 The response key is formatted as shown below:

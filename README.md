@@ -1,9 +1,11 @@
-![](https://api.travis-ci.org/javierhonduco/nebrija.svg )
-[![Code Climate](https://codeclimate.com/github/javierhonduco/nebrija.png)](https://codeclimate.com/github/javierhonduco/nebrija)
+Nebrija: A rae parser
+=====================
 
-Description
------------
-Blablablá.
+
+[![Build Status](https://travis-ci.org/javierhonduco/nebrija.svg?branch=master)](https://travis-ci.org/javierhonduco/nebrija)
+
+[[!Code Climate](http://img.shields.io/codeclimate/github/javierhonduco/nebrija.svg)](https://codeclimate.com/github/javierhonduco/nebrija)
+
 
 Install
 -------

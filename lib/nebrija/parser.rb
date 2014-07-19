@@ -40,7 +40,7 @@ class Parser
       else
         text = entry.inner_text.strip.gsub(/[0-9]+\.[ ]/, '')
         if text[0] == '('
-          single_data[:etymology] = text
+          single_data[index][:etymology] = text
           next
         end
 
@@ -49,7 +49,7 @@ class Parser
         single_data[index][:meanings] << {
           :word       => text, 
           :meta       => (unparsed_meta.join.strip if unparsed_meta.join.strip != ''),
-        e if !text.nil? and text != ''
+        } if !text.nil? and text != ''
         state = :definitions
       end
       state = :entry

@@ -42,6 +42,10 @@ CLI searching
 $ nebrija <word>
 ```
 
+Friend projects/ project using this gem
+---------------------------------------
+[Rae downloader](https://github.com/raul/rae-downloader) by @raul
+
 TODO
 ----
 * Check it works properly.

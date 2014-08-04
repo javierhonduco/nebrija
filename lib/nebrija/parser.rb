@@ -90,6 +90,10 @@ class Parser
   end
   
   def delete_pending?
-    (@doc.css('body > div > p').first.inner_text =~/suprimido/).nil?
+    tb_deleted = true
+    if !@doc.css('body > div > p').nil? && !@doc.css('body > div > p').first.nil?
+      tb_deleted = (@doc.css('body > div > p').first.inner_text =~/suprimido/).nil?
+    end
+    tb_deleted
   end
 end

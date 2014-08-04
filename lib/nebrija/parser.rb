@@ -13,7 +13,7 @@ class Parser
 
   def parse
 
-    return {:status => 'error', :message => 'Word does not exist. Sorry.'} if !valid? 
+    return {:status => 'error', :message => 'Word/id does not exist. Sorry.'} if !valid? 
     perform
   end
 

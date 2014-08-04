@@ -72,7 +72,7 @@ class Parser
     valid_title = (@doc.css('title').inner_text =~/error/).nil?
     valid_body  = (@doc.css('body').inner_text =~/No encontrado/).nil?
 
-    valid_title && valid_body
+    valid_title && valid_body && delete_pending?
   end
 
   def perform
@@ -87,5 +87,9 @@ class Parser
       :type => if single? then 'single' else 'multiple' end,
       :response => response
     }
+  end
+  
+  def delete_pending?
+    (@doc.css('body > p.l').inner_text =~/suprimido/).nil?
   end
 end

@@ -36,7 +36,7 @@ else
     data.each_with_index do |entry, i|
       puts "#{i+1}. #{entry[:word]}"
       entry[:meanings].each_with_index do |definitions, j|
-        puts "\t#{j+1}. #{definitions[:word]}"
+        puts "\t#{j+1}. #{definitions[:definition]}"
         puts "\t\tMeta: #{definitions[:meta]}" if !definitions[:meta].nil?
       end
     end 

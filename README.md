@@ -17,7 +17,7 @@ API
 ---
 ```ruby
 require 'nebrija'
-res = HTTPRae.new.search('word')
+res = HTTPRae.new.search('word/id') 
 puts res # prints the results
 ```
 
@@ -34,13 +34,17 @@ The response data is formatted as shown below:
 ```
 * Multiple responses
 ```ruby
-[{:word=>"A-1.", :etymology=>"(Del gr. ἀ-, priv.).", :meanings=>[{:word=>"Carece de significación precisa. Amatar. Asustar. Avenar.", :meta=>"pref."}]}, {:word=>"A1.", :etymology=> nil, :meanings=>[{:word=>"Primera letra del abecedario español y del orden latino internacional, que representa un fonema vocálico abierto y central.", :meta=>"f."}, {:word=>"Signo de la proposición universal afirmativa.", :meta=>"Fil."}]}, {:word=>"~ por ~ y b por b.", :etymology=> nil, :meanings=>[{:word=>"punto por punto.", :meta=>"adv."}]}, {:word=>"A-2.", :etymology=> nil, :meanings=>[{:word=>"Denota privación o negación. Acromático. Ateísmo. Ante vocal toma la forma an-. Anestesia. Anorexia.", :meta=>"pref."}]}]
+[{:word=>"A-1.", :etymology=>"(Del gr. ἀ-, priv.).", :meanings=>[{:meaning=>"Carece de significación precisa. Amatar. Asustar. Avenar.", :meta=>"pref."}]}, {:word=>"A1.", :etymology=> nil, :meanings=>[{:meaning=>"Primera letra del abecedario español y del orden latino internacional, que representa un fonema vocálico abierto y central.", :meta=>"f."}, {:meaning=>"Signo de la proposición universal afirmativa.", :meta=>"Fil."}]}, {:word=>"~ por ~ y b por b.", :etymology=> nil, :meanings=>[{:meaning=>"punto por punto.", :meta=>"adv."}]}, {:word=>"A-2.", :etymology=> nil, :meanings=>[{:meaning=>"Denota privación o negación. Acromático. Ateísmo. Ante vocal toma la forma an-. Anestesia. Anorexia.", :meta=>"pref."}]}]
 ```
 CLI searching
 ---------
 ```bash
 $ nebrija <word>
 ```
+
+Friend projects/ project using this gem
+---------------------------------------
+* [Rae downloader](https://github.com/raul/rae-downloader) by @raul
 
 TODO
 ----

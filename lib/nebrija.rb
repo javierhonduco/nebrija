@@ -1,6 +1,6 @@
 require 'nebrija/parser'
 require 'typhoeus'
-require 'URI'
+require 'uri'
 
 class Rae
 

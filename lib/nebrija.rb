@@ -1,6 +1,6 @@
 require 'nebrija/parser'
 require 'typhoeus'
-
+require 'URI'
 
 class Rae
 
@@ -32,19 +32,21 @@ class HTTPRae < Rae
   private
   def query(word)
     @word = word
-
+    
     params = 'id=' 
     params = 'val=' if val?
-
+    
     response = Typhoeus::Request.post(
-      "#{SEARCH_URL}#{params}#{word}",
+      URI.escape("#{SEARCH_URL}#{params}#{word}".encode('iso-8859-1')),
       body: build_headers
     )
+    
     response.body
+
   end
 
   def val?
-    (@word =~ ID_REGEX).nil?
+    (@word.encode('utf-8') =~ ID_REGEX).nil?
   end
 
   def build_headers

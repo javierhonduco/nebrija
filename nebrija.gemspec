@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency(%q<nokogiri>)
   s.add_dependency(%q<typhoeus>)
-  s.add_dependency(%q<IRB>)
+  s.add_dependency(%q<URI>)
 
   s.add_development_dependency('rake')
   s.add_development_dependency('minitest', '~> 5')

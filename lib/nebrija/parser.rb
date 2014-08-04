@@ -69,7 +69,10 @@ class Parser
   end
 
   def valid?
-    (@doc.css('title').inner_text =~/error/).nil?
+    valid_title = (@doc.css('title').inner_text =~/error/).nil?
+    valid_body  = (@doc.css('body').inner_text =~/No encontrado/).nil?
+
+    valid_title && valid_body
   end
 
   def perform

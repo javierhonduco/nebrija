@@ -1,55 +1,28 @@
-require 'nebrija/parser'
 require 'typhoeus'
 require 'uri'
+require 'nebrija/parser'
 
 class Rae
+  SEARCH_URL = 'http://lema.rae.es/drae/srv/search'
 
   def search(word)
     Parser.new(query(word), word).parse
   end
 
   private
+
   def query(word)
-    raise 'NotImplementedError'
-  end
-end
+    params = (word.encode('utf-8') =~ /\d/) ? 'id=' : 'val='
 
-
-class FileRae < Rae
-
-  private
-  def query(file)
-    IO.read(file)
-  end
-end
-
-
-class HTTPRae < Rae
-  USER_AGENT = 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36'
-  SEARCH_URL = 'http://lema.rae.es/drae/srv/search?'
-  ID_REGEX = /[0-9]/
-
-  private
-  def query(word)
-    @word = word
-    
-    params = 'id=' 
-    params = 'val=' if val?
-    
     response = Typhoeus::Request.post(
-      URI.escape("#{SEARCH_URL}#{params}#{word}".encode('iso-8859-1')),
-      body: build_headers
+      URI.escape("#{SEARCH_URL}?#{params}#{word}".encode('iso-8859-1')),
+      :body => build_body
     )
-    
+
     response.body
-
   end
 
-  def val?
-    (@word.encode('utf-8') =~ ID_REGEX).nil?
-  end
-
-  def build_headers
+  def build_body
     {
       'TS014dfc77_id' => 3,
       'TS014dfc77_cr' => '42612abd48551544c72ae36bc40f440a%3Akkmj%3AQG60Q2v4%3A1477350835',

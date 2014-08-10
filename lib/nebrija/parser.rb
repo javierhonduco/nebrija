@@ -1,27 +1,36 @@
 require 'nokogiri'
 
 class Parser
-  
+
   META_REGEX = /^([a-zA-Z]{1,4}+\.[ ]{1,2})+/
 
   def initialize(rae_data, word)
     @doc = Nokogiri::HTML(rae_data
-                      .gsub(/[\n]+/, '')
-                      .gsub(/[ ]{2,}+/, ' '))
-    @word = word
+                      .gsub(/\n+/, '')
+                      .gsub(/\s{2,}+/, ' '))
   end
 
   def parse
-
-    return {:status => 'error', :message => 'Word/id does not exist. Sorry.'} if !valid? 
-    perform
+    if valid?
+      {
+        :status => 'success',
+        :type => single? ? 'single' : 'multiple',
+        :response => single? ? parse_single : parse_multiple
+      }
+    else
+      {
+        :status => 'error',
+        :message => 'Word/id does not exist. Sorry.'
+      }
+    end
   end
+
+  private
 
   def single?
     @doc.css('body > ul').length.zero?
   end
 
-  private 
   def parse_single
     single_data = []
     state = :entry # TODO. Improve FSM syntax.
@@ -32,7 +41,7 @@ class Parser
         word = entry.css('span').inner_text
         word = '=>' if word == ''
         single_data << {
-          :word => word.strip.capitalize, # gsub(/~/, @word)
+          :word => word.strip.capitalize,
           :meanings => [],
           :etymology  => nil
         }
@@ -54,18 +63,17 @@ class Parser
       end
       state = :entry
     end 
+
     single_data
   end
 
   def parse_multiple
-    multiple_result = []
-    @doc.css('body > ul > li > a').each do |word|
-      multiple_result << {
+    @doc.css('body > ul > li > a').map do |word|
+      {
         :word => word.css('span').first.inner_text,
         :id => word['href'].gsub(/search\?id=/, '')
       }
-    end 
-    multiple_result
+    end
   end
 
   def valid?
@@ -75,20 +83,6 @@ class Parser
     valid_title && valid_body && delete_pending?
   end
 
-  def perform
-    response = nil
-    if single?
-      response = parse_single
-    else
-      response = parse_multiple
-    end
-    {
-      :status => 'success', 
-      :type => if single? then 'single' else 'multiple' end,
-      :response => response
-    }
-  end
-  
   def delete_pending?
     tb_deleted = true
     if !@doc.css('body > div > p').nil? && !@doc.css('body > div > p').first.nil?

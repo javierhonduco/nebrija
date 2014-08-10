@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'nebrija'
-  s.version = '0.1.2'
+  s.version = '0.2.0'
   s.executables << 'nebrija'
 
   s.authors = ['@javierhonduco']
@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.description = %q{A gem to access the rae dictionary}
   s.email = %q{javierhonduco@gmail.com}
   s.files = ['Rakefile', 'lib/nebrija.rb', 'lib/nebrija/parser.rb', 'bin/nebrija']
-  s.test_files = ['test/test_basic.rb']
+  s.test_files = ['test/test_rae.rb']
   s.homepage = %q{http://rubygems.org/gems/nebrija}
   s.require_paths = ['lib']
   s.rubygems_version = %q{1.8.23}
@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency('rake')
   s.add_development_dependency('minitest', '~> 5')
+  s.add_development_dependency('webmock', '~> 1.18.0')
 
   s.license = 'MIT'
 end

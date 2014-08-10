@@ -14,7 +14,7 @@ end
 puts 'Oh, hai!'
 puts
 
-response = HTTPRae.new.search(arg)
+response = Rae.new.search(arg)
 
 status = response[:status]
 

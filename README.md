@@ -17,7 +17,7 @@ API
 ---
 ```ruby
 require 'nebrija'
-res = HTTPRae.new.search('word/id') 
+res = Rae.new.search('word/id') 
 puts res # prints the results
 ```
 

@@ -27,6 +27,7 @@ class Rae
       'TS014dfc77_id' => 3,
       'TS014dfc77_cr' => '42612abd48551544c72ae36bc40f440a%3Akkmj%3AQG60Q2v4%3A1477350835',
       'TS014dfc77_76' => 0,
+      'TS014dfc77_86' => 0,
       'TS014dfc77_md' => 1,
       'TS014dfc77_rf' => 0,
       'TS014dfc77_ct' => 0,

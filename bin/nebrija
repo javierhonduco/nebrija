@@ -11,8 +11,6 @@ if arg.nil?
   abort('Wrong args')
 end
 
-puts 'Oh, hai!'
-puts
 
 response = Rae.new.search(arg)
 

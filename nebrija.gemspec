@@ -1,4 +1,4 @@
-require_relative './lib/version'
+require './lib/version'
 
 Gem::Specification.new do |s|
   s.name = 'nebrija'

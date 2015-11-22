@@ -1,6 +1,8 @@
+require_relative './lib/version'
+
 Gem::Specification.new do |s|
   s.name = 'nebrija'
-  s.version = '0.2.2'
+  s.version = Rae::version
   s.executables << 'nebrija'
 
   s.authors = ['@javierhonduco']

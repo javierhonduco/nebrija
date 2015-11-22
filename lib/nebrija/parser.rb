@@ -54,15 +54,16 @@ class Parser
         end
 
         unparsed_meta = text.scan META_REGEX
+
         text = text.gsub(META_REGEX, '')
         single_data[index][:meanings] << {
-          :meaning    => text, 
+          :meaning    => text,
           :meta       => (unparsed_meta.join.strip if unparsed_meta.join.strip != ''),
-        } if !text.nil? and text != ''
+        } if !text.nil? and text != '' and index >= 0
         state = :definitions
       end
       state = :entry
-    end 
+    end
 
     single_data
   end

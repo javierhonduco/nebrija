@@ -1,10 +1,6 @@
-$LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
-
-require 'version'
-
 Gem::Specification.new do |s|
   s.name = 'nebrija'
-  s.version = Rae::version
+  s.version = '0.2.2'
   s.executables << 'nebrija'
 
   s.authors = ['@javierhonduco']

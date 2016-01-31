@@ -44,7 +44,7 @@ $ nebrija <word>
 
 Friend projects/ project using this gem
 ---------------------------------------
-* [Rae downloader](https://github.com/raul/rae-downloader) by @raul
+* [Rae downloader](https://github.com/raul/rae-downloader) by [@raul](https://github.com/raul)
 * [Dulcinea: a nebrija frontend](https://github.com/javierhonduco/dulcinea) 
 
 TODO

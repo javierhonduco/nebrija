@@ -3,7 +3,8 @@ require 'typhoeus'
 require_relative './parser'
 
 class Rae
-  SEARCH_URL = 'http://lema.rae.es/drae/srv/search'
+  SEARCH_URL = 'http://dle.rae.es/srv/search'
+  USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'
 
   def search(word)
     Parser.new(query(word), word).parse
@@ -12,28 +13,18 @@ class Rae
   private
 
   def query(word)
-    params = (word.encode('utf-8') =~ /\d/) ? 'id=' : 'val='
+    url = URI.escape("#{SEARCH_URL}?w=#{word}".encode('iso-8859-1'))
+    headers = {
+      'User-Agent' => USER_AGENT,
+      'Cookie' => 'TS017111a7=017ccc203c0b977befd5d97f3b75b80f201991f161b0d246f45e53dac0967ac4e4acfd7161',
+    }
 
-    response = Typhoeus::Request.post(
-      URI.escape("#{SEARCH_URL}?#{params}#{word}".encode('iso-8859-1')),
-      :body => build_body
+    response = Typhoeus::Request.get(
+      url,
+      headers: headers,
+      accept_encoding: 'gzip',
     )
 
     response.body
-  end
-
-  def build_body
-    {
-      'TS014dfc77_id' => 3,
-      'TS014dfc77_cr' => '42612abd48551544c72ae36bc40f440a%3Akkmj%3AQG60Q2v4%3A1477350835',
-      'TS014dfc77_76' => 0,
-      'TS014dfc77_86' => 0,
-      'TS014dfc77_md' => 1,
-      'TS014dfc77_rf' => 0,
-      'TS014dfc77_ct' => 0,
-      'TS014dfc77_pd' => 0
-    }.map {|key, value|
-      "#{key}=#{value}"
-    }.join('&')
   end
 end

@@ -3,7 +3,7 @@ require 'typhoeus'
 require_relative './parser'
 
 class Rae
-  SEARCH_URL = 'http://dle.rae.es/srv/search'
+  SEARCH_URL = 'http://dle.rae.es/srv/fetch'
   USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'
 
   def search(word)

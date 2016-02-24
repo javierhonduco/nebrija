@@ -43,7 +43,8 @@ Friend projects/ project using this gem
 
 TODO
 ----
-* Doc. (return, hacks...)
-* Improve the code.
 * Set a request timeout.
-* ~~Improve the API.~~
+* Improve the API.
+* Update clients to use new API.
+* Fix multiple responses.
+* Better doc.

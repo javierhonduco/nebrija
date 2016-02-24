@@ -14,8 +14,8 @@ class Parser
     if valid?
       {
         :status => 'success',
-        :type => single? ? 'single' : 'multiple',
-        :response => single? ? parse_single : parse_multiple
+        :type => 'single',
+        :response => parse_single
       }
     else
       {
@@ -28,44 +28,37 @@ class Parser
   private
 
   def single?
-    @doc.css('body > ul').length.zero?
+    @doc.css('article').length == 1
   end
 
   def parse_single
-    single_data = []
-    state = :entry # TODO. Improve FSM syntax.
-    index = -1 # HACK(javierhonduco)
+    response = {
+      :basic_meanings => [],
+      :other_meanings => []
+    }
 
-    @doc.css('body > div > p').each do |entry|
-      if entry['class'] == 'p' and state == :entry
-        word = entry.css('span').inner_text
-        word = '=>' if word == ''
-        single_data << {
-          :word => word.strip.capitalize,
-          :meanings => [],
-          :etymology  => nil
-        }
-        index+=1
-      else
-        text = entry.inner_text.strip.gsub(/[0-9]+\.[ ]/, '')
-        if text[0] == '('
-          single_data[index][:etymology] = text
-          next
-        end
+    response[:word] = @doc.css('header').inner_text.sub('.', '')
 
-        unparsed_meta = text.scan META_REGEX
-
-        text = text.gsub(META_REGEX, '')
-        single_data[index][:meanings] << {
-          :meaning    => text,
-          :meta       => (unparsed_meta.join.strip if unparsed_meta.join.strip != ''),
-        } if !text.nil? and text != '' and index >= 0
-        state = :definitions
+    @doc.css('body > div > article > p').each_with_index do |entry, index|
+      if index.zero? # Parsing etymology
+        response[:etymology] = entry.inner_text
+      elsif entry['class'] =~ /j[0-9]*/
+        # Parsing first meaning
+        response[:basic_meanings] << entry.inner_text
+      elsif entry['class'] == 'm' || entry['class'] =~/k[0-9]*/
+        # Parsing other meanings
+        #   k is the expression with 1 element
+        #   m is the meaning with >= elements
+        type = (:meaning if entry['class'] == 'm') || :expression
+        response[:other_meanings] << [type, entry.inner_text]
       end
-      state = :entry
     end
 
-    single_data
+    clean! response
+  end
+
+  def clean! response
+    response
   end
 
   def parse_multiple
@@ -78,13 +71,11 @@ class Parser
   end
 
   def valid?
-    valid_title = (@doc.css('title').inner_text =~/error/).nil?
-    valid_body  = (@doc.css('body').inner_text =~/No encontrado/).nil?
-
-    valid_title && valid_body && delete_pending?
+    !@doc.css('article').length.zero? # delete_pending?
   end
 
   def delete_pending?
+    # TODO: Check
     tb_deleted = true
     if !@doc.css('body > div > p').nil? && !@doc.css('body > div > p').first.nil?
       tb_deleted = (@doc.css('body > div > p').first.inner_text =~/suprimido/).nil?

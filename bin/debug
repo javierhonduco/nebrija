@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'pp'
+require_relative '../lib/nebrija'
+
+pp Rae.new.search(ARGV.first)

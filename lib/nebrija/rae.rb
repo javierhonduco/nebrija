@@ -15,7 +15,7 @@ class Rae
     url = URI.escape("#{SEARCH_URL}?w=#{word}".encode('iso-8859-1'))
     headers = {
       'User-Agent' => USER_AGENT,
-      'Cookie' => 'TS017111a7=017ccc203c0b977befd5d97f3b75b80f201991f161b0d246f45e53dac0967ac4e4acfd7161',
+      'Cookie' => 'TS017111a7=017ccc203c0b977befd5d97f3b75b80f201991f161b0d246f45e53dac0967ac4e4acfd7161'
     }
 
     response = Typhoeus::Request.get(

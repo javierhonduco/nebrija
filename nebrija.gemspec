@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
 
   s.authors = ['@javierhonduco']
   s.date = Time.now.utc.strftime('%Y-%m-%d')
-  s.description = %q{A gem to access the rae dictionary}
+  s.description = 'A gem to access the rae dictionary'
   s.email = 'javierhonduco@gmail.com'
   s.files = ['Rakefile', 'lib/nebrija.rb', 'lib/nebrija/parser.rb', 'bin/nebrija']
   s.test_files = ['test/test_rae.rb']

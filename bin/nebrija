@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 
+$: << 'lib'
+
 require 'json'
 require 'nebrija/cli'
 
-raise NotImplementedError
-# Nebrija::cli(ARGV.first)
+Nebrija::cli(ARGV.first)

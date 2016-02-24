@@ -58,6 +58,27 @@ class Parser
   end
 
   def clean! response
+    parsed_meanings = []
+    state = :EXPR
+    temp = nil
+
+    response[:other_meanings].each do |type, text|
+      state = :EXPR if type == :expression
+      if state == :EXPR
+        unless temp.nil?
+          parsed_meanings << temp
+        end
+        temp = {
+          :expression => text,
+          :meanings => []
+        }
+        state = :MEAN
+      elsif state == :MEAN
+        temp[:meanings] << text
+      end
+    end
+    response[:other_meanings] = parsed_meanings
+
     response
   end
 

@@ -1,1 +1,2 @@
-require_relative './nebrija/rae'
+require 'nebrija/parser'
+require 'nebrija/rae'

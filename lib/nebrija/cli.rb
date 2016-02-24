@@ -1,5 +1,5 @@
 require 'json'
-require_relative './rae'
+require 'nebrija/rae'
 
 module Nebrija
   def self.cli word

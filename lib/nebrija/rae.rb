@@ -1,6 +1,5 @@
 require 'uri'
 require 'typhoeus'
-require_relative './parser'
 
 class Rae
   SEARCH_URL = 'http://dle.rae.es/srv/fetch'

@@ -29,7 +29,6 @@ The response data can be found in the `response` key which is an array.
 
 The response data is formatted as shown in the [nebrija/cli](https://github.com/javierhonduco/nebrija/blob/master/lib/nebrija/cli.rb) file:
 
-```
 CLI searching
 ---------
 ```bash

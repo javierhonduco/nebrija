@@ -44,7 +44,7 @@ class Parser
         response[:etymology] = entry.inner_text
       elsif entry['class'] =~ /j[0-9]*/
         # Parsing first meaning
-        response[:basic_meanings] << entry.inner_text
+        response[:basic_meanings] << metadata(entry.inner_text)
       elsif entry['class'] == 'm' || entry['class'] =~/k[0-9]*/
         # Parsing other meanings
         #   k is the expression with 1 element
@@ -74,7 +74,7 @@ class Parser
         }
         state = :MEAN
       elsif state == :MEAN
-        temp[:meanings] << text
+        temp[:meanings] << metadata(text)
       end
     end
     response[:other_meanings] = parsed_meanings
@@ -82,6 +82,15 @@ class Parser
     response
   end
 
+  def metadata text
+    # To be implemented
+    # The idea would be to split the text in metadata
+    # and real text. It's seems quite tricky.
+    {
+      :meaning => text,
+      :meta => nil
+    }
+  end
   def parse_multiple
     @doc.css('body > ul > li > a').map do |word|
       {

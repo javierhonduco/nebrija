@@ -3,4 +3,5 @@
 require 'json'
 require_relative '../lib/nebrija/cli'
 
-Nebrija::cli(ARGV.first)
+raise NotImplementedError
+#Nebrija::cli(ARGV.first)

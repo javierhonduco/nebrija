@@ -2,6 +2,18 @@ require 'test_helper'
 
 class TestRae < Minitest::Test
 
+  def test_cli_basic
+    word = 'amor'
+    stub_request(:get, "#{Rae::SEARCH_URL}?w=#{word}").
+      to_return(:status => 200, :body => mock('single'))
+
+    out, err = capture_io do
+      Nebrija::cli(word)
+    end
+
+    assert_match mock_cli.gsub(/\s+/, ''), out.gsub(/\s+/, '')
+  end
+
   def test_error_basic
     stub_request(:get, "#{Rae::SEARCH_URL}?w=wadus").
       to_return(:status => 200, :body => mock('error'))
@@ -38,5 +50,10 @@ class TestRae < Minitest::Test
 
   def mock(mock_name)
     File.read("#{File.expand_path(File.dirname(__FILE__))}/mocks/#{mock_name}.html")
+  end
+
+  def mock_cli
+    'Sentimiento hacia otra persona que naturalmente nos atrae y que, procurando reciprocidad en el deseo de unión, nos completa, alegra y da energía para convivir, comunicarnos y crear
+    '
   end
 end

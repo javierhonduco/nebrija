@@ -7,7 +7,7 @@ class TestRae < Minitest::Test
     stub_request(:get, "#{Rae::SEARCH_URL}?w=#{word}").
       to_return(:status => 200, :body => mock('single'))
 
-    out, err = capture_io do
+    out, _ = capture_io do
       Nebrija::cli(word)
     end
 

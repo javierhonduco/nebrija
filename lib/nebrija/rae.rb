@@ -1,4 +1,4 @@
-require 'uri'
+require 'cgi'
 require 'faraday'
 
 class Rae
@@ -12,7 +12,7 @@ class Rae
   private
 
   def query(word)
-    url = URI.escape("#{SEARCH_URL}?w=#{word}".encode('iso-8859-1'))
+    url = "#{SEARCH_URL}?w=#{CGI::escape(word)}".encode('iso-8859-1')
 
     response = Faraday.get(url)
     response.body

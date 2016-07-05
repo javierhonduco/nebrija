@@ -16,12 +16,10 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.summary = 'This gem makes easy accessing RAE webpage in a programmatic way'
 
-  s.add_dependency('nokogiri')
-  s.add_dependency('faraday', '~> 0')
+  s.add_dependency('nokogiri', '~> 1.6.8')
+  s.add_dependency('faraday', '~> 0.8.11')
 
-  s.add_development_dependency('rake', '~> 0')
-  s.add_development_dependency('minitest', '~> 5')
-  s.add_development_dependency('webmock', '~> 1.18.0', '>= 1.18.0')
+  s.add_development_dependency('webmock', '~> 2.1.0')
 
   s.license = 'MIT'
 end

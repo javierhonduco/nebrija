@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency('faraday', '~> 0.8.11')
 
   s.add_development_dependency('webmock', '~> 2.1.0')
+  s.add_development_dependency('rake', '~> 11.2.2')
 
   s.license = 'MIT'
 end

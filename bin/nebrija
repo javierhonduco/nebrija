@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-$: << 'lib'
-
 require 'json'
 require 'nebrija/cli'
 

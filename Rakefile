@@ -13,7 +13,8 @@ task :default => :test
 
 desc 'Publish'
 task :publish do
-  $: << 'lib' and require 'nebrija/version'
+  require 'nebrija/version'
+
   version = Nebrija::VERSION
 
   `gem build nebrija.gemspec`

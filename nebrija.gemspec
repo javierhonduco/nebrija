@@ -19,8 +19,9 @@ Gem::Specification.new do |s|
   s.add_dependency('nokogiri', '~> 1.6.8')
   s.add_dependency('faraday', '~> 0.8.11')
 
-  s.add_development_dependency('webmock', '~> 2.1.0')
   s.add_development_dependency('rake', '~> 11.2.2')
+  s.add_development_dependency('webmock', '~> 2.1.0')
+  s.add_development_dependency('minitest', '~> 5.9.0')
 
   s.license = 'MIT'
 end

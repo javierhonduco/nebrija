@@ -1,4 +1,4 @@
-$: << 'lib' and require 'nebrija/version'
+$LOAD_PATH << 'lib' && require('nebrija/version')
 
 Gem::Specification.new do |s|
   s.name = 'nebrija'
@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.date = Time.now.utc.strftime('%Y-%m-%d')
   s.description = 'A gem to access the RAE dictionary'
   s.email = 'javierhonduco@gmail.com'
-  s.files = `git ls-files`.split($/)
+  s.files = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   s.test_files = ['test/test_rae.rb']
   s.homepage = 'http://rubygems.org/gems/nebrija'
 

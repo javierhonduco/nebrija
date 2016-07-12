@@ -1,24 +1,23 @@
 require 'nokogiri'
 
 class Parser
-
   META_REGEX = /^([a-zA-Z]{1,4}+\.[ ]{1,2})+/
 
-  def initialize(rae_data, word)
+  def initialize(rae_data, _word)
     @doc = Nokogiri::HTML(rae_data)
   end
 
   def parse
     if valid?
       {
-        :status => 'success',
-        :type => single? ? 'single' : 'multiple',
-        :response => parse_single
+        status: 'success',
+        type: single? ? 'single' : 'multiple',
+        response: parse_single
       }
     else
       {
-        :status => 'error',
-        :message => 'Word/id does not exist. Sorry.'
+        status: 'error',
+        message: 'Word/id does not exist. Sorry.'
       }
     end
   end
@@ -27,13 +26,13 @@ class Parser
 
   def parse_single
     response = {
-      :core_meanings => [],
-      :other_meanings => []
+      core_meanings: [],
+      other_meanings: []
     }
 
-    response[:word] = @doc.css('header').
-      inner_text.sub('.', '').
-      capitalize!
+    response[:word] = @doc.css('header')
+                          .inner_text.sub('.', '')
+                          .capitalize!
 
     @doc.css('body > div > article > p').each_with_index do |entry, index|
       if index.zero?
@@ -42,7 +41,7 @@ class Parser
       elsif entry['class'] =~ /j[0-9]*/
         # Parsing first meaning
         response[:core_meanings] << metadata(entry.inner_text)
-      elsif entry['class'] == 'm' || entry['class'] =~/k[0-9]*/
+      elsif entry['class'] == 'm' || entry['class'] =~ /k[0-9]*/
         # Parsing other meanings
         #   k: expression with 1 element
         #   m: is the meaning with >= elements
@@ -54,7 +53,7 @@ class Parser
     clean! response
   end
 
-  def clean! response
+  def clean!(response)
     parsed_meanings = []
     state = :EXPR
     temp = nil
@@ -62,12 +61,10 @@ class Parser
     response[:other_meanings].each do |type, text|
       state = :EXPR if type == :expression
       if state == :EXPR
-        unless temp.nil?
-          parsed_meanings << temp
-        end
+        parsed_meanings << temp unless temp.nil?
         temp = {
-          :expression => text,
-          :meanings => []
+          expression: text,
+          meanings: []
         }
         state = :MEAN
       elsif state == :MEAN
@@ -87,13 +84,13 @@ class Parser
     !@doc.css('article').length.zero? # delete_pending?
   end
 
-  def metadata text
+  def metadata(text)
     # TODO
     # The idea would be to split the text in metadata
     # and real text. It's seems quite tricky.
     {
-      :meaning => text,
-      :meta => nil
+      meaning: text,
+      meta: nil
     }
   end
 

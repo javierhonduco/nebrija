@@ -4,3 +4,5 @@ Metrics/MethodLength:
   Max: 20
 Documentation:
   Enabled: false
+Style/SpecialGlobalVars:
+  Enabled: false

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.date = Time.now.utc.strftime('%Y-%m-%d')
   s.description = 'A gem to access the RAE dictionary'
   s.email = 'javierhonduco@gmail.com'
-  s.files = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
+  s.files = `git ls-files`.split($/)
   s.test_files = ['test/test_rae.rb']
   s.homepage = 'http://rubygems.org/gems/nebrija'
 
@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
   s.summary = 'This gem makes easy accessing RAE webpage in a programmatic way'
 
   s.add_dependency('nokogiri', '~> 1.6.8')
-  s.add_dependency('faraday', '~> 0.8.11')
 
   s.add_development_dependency('rake', '~> 11.2.2')
   s.add_development_dependency('webmock', '~> 2.1.0')

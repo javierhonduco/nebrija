@@ -1,5 +1,6 @@
 require 'rake/testtask'
 require 'rubocop/rake_task'
+require 'bundler/gem_tasks'
 
 RuboCop::RakeTask.new
 
@@ -10,15 +11,3 @@ end
 
 desc 'Run tests'
 task default: :test
-
-desc 'Publish'
-task :publish do
-  require 'nebrija/version'
-
-  version = Nebrija::VERSION
-
-  `gem build nebrija.gemspec`
-  `gem install nebrija-#{version}.gem`
-  `gem push nebrija-#{version}.gem`
-  `rm *.gem`
-end

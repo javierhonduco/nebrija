@@ -1,5 +1,5 @@
 require 'cgi'
-require 'faraday'
+require 'net/http'
 
 class Rae
   SEARCH_URL = 'http://dle.rae.es/srv/fetch'.freeze
@@ -13,9 +13,12 @@ class Rae
   private
 
   def query(word)
-    url = "#{SEARCH_URL}?w=#{CGI.escape(word)}".encode('iso-8859-1')
+    uri = URI "#{SEARCH_URL}?w=#{CGI.escape(word)}".encode('iso-8859-1')
 
-    response = Faraday.get(url)
-    response.body
+    Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
+      request = Net::HTTP::Get.new uri
+      response = http.request request
+      response.body
+    end
   end
 end

@@ -1,7 +1,6 @@
 Nebrija: A rae parser
 =====================
 
-
 [![Build Status](https://travis-ci.org/javierhonduco/nebrija.svg?branch=master)](https://travis-ci.org/javierhonduco/nebrija)
 [![Code Climate](https://img.shields.io/codeclimate/github/javierhonduco/nebrija.svg)](https://codeclimate.com/github/javierhonduco/nebrija)
 
@@ -23,9 +22,9 @@ puts res # prints the results
 
 `HTTPRae` returns a hash where the key `status` can be `error`|`success`.
 
-If the request is succesful, the key `type` indicates wheter the result type is a single word or multiple  with `single`|`multiple`.
+If the request is succesful, the key `type` indicates whether the result type is a single word or multiple  with `single`|`multiple`.
 
-The response data can be found in the `response` key which is an array.
+The response data can be found in the `response` key which holds an array.
 
 The response data is formatted as shown in the [nebrija/cli](https://github.com/javierhonduco/nebrija/blob/master/lib/nebrija/cli.rb) file:
 
@@ -35,7 +34,7 @@ CLI searching
 $ nebrija <word>
 ```
 
-Maybe you are lazy as me and want to add an alias to `rae` or `spanish` like I do :)
+Maybe you are lazy and want to add an alias to `rae` or `es` like I do :)
 
 Friend projects/ project using this gem
 ---------------------------------------
@@ -44,8 +43,9 @@ Friend projects/ project using this gem
 
 TODO
 ----
-* Set a request timeout.
 * Improve the API.
 * Update clients to use new API.
 * Fix multiple responses.
 * Better doc.
+* Mockless testing.
+* Make the parser more readable.

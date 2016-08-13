@@ -3,4 +3,4 @@
 require 'json'
 require 'nebrija/cli'
 
-Nebrija::cli(ARGV.first)
+Nebrija.cli(ARGV.first)

@@ -2,10 +2,9 @@ require 'json'
 require 'nebrija'
 
 module Nebrija
-  def self.cli word
-    if word.nil?
-      abort 'Type a word `$ nebrija amor`'
-    end
+  # rubocop:disable MethodLength
+  def self.cli(word)
+    abort 'Type a word `$ nebrija amor`' if word.nil?
 
     result = Rae.new.search(word)
     status = result[:status]

@@ -1,9 +1,7 @@
 require 'nokogiri'
 
 class Parser
-  META_REGEX = /^([a-zA-Z]{1,4}+\.[ ]{1,2})+/
-
-  def initialize(rae_data, _word)
+  def initialize(rae_data)
     @doc = Nokogiri::HTML(rae_data)
   end
 

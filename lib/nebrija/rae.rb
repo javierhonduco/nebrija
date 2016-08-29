@@ -9,7 +9,7 @@ class Rae
   READ_TIMEOUT  = 3
 
   def search(word)
-    Parser.new(query(word), word).parse
+    Parser.new(query(word)).parse
   end
 
   private

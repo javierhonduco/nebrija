@@ -53,7 +53,6 @@ class TestRae < Minitest::Test
 
   def mock_cli
     # rubocop:disable LineLength
-    'Sentimiento hacia otra persona que naturalmente nos atrae y que, procurando reciprocidad en el deseo de unión, nos completa, alegra y da energía para convivir, comunicarnos y crear
-    '
+    'Sentimiento hacia otra persona que naturalmente nos atrae y que, procurando reciprocidad en el deseo de unión, nos completa, alegra y da energía para convivir, comunicarnos y crear'
   end
 end

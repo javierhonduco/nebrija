@@ -3,7 +3,7 @@ require 'test_helper'
 class TestRae < Minitest::Test
   def test_cli_basic
     word = 'amor'
-    stub_request(:get, "#{Rae::SEARCH_URL}?w=#{word}")
+    stub_request(:post, "#{Rae::SEARCH_URL}?w=#{word}")
       .to_return(status: 200, body: mock('single'))
 
     out, = capture_io do
@@ -14,7 +14,7 @@ class TestRae < Minitest::Test
   end
 
   def test_error_basic
-    stub_request(:get, "#{Rae::SEARCH_URL}?w=wadus")
+    stub_request(:post, "#{Rae::SEARCH_URL}?w=wadus")
       .to_return(status: 200, body: mock('error'))
 
     search = Rae.new.search('wadus')
@@ -22,7 +22,7 @@ class TestRae < Minitest::Test
   end
 
   def test_single_basic
-    stub_request(:get, "#{Rae::SEARCH_URL}?w=amor")
+    stub_request(:post, "#{Rae::SEARCH_URL}?w=amor")
       .to_return(status: 200, body: mock('single'))
 
     search = Rae.new.search('amor')
@@ -34,7 +34,7 @@ class TestRae < Minitest::Test
   end
 
   def test_multiple_basic
-    stub_request(:get, "#{Rae::SEARCH_URL}?w=banco")
+    stub_request(:post, "#{Rae::SEARCH_URL}?w=banco")
       .to_return(status: 200, body: mock('multiple'))
 
     search = Rae.new.search('banco')

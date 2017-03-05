@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class TestRae < Minitest::Test
+  def setup
+    WebMock.disable! if ENV['NO_MOCK']
+  end
+
   def test_cli_basic
     word = 'amor'
     stub(word, :single)

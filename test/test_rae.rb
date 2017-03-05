@@ -3,8 +3,7 @@ require 'test_helper'
 class TestRae < Minitest::Test
   def test_cli_basic
     word = 'amor'
-    stub_request(:post, "#{Rae::SEARCH_URL}?w=#{word}")
-      .to_return(status: 200, body: mock('single'))
+    stub(word, :single)
 
     out, = capture_io do
       Nebrija.cli(word)
@@ -14,18 +13,18 @@ class TestRae < Minitest::Test
   end
 
   def test_error_basic
-    stub_request(:post, "#{Rae::SEARCH_URL}?w=wadus")
-      .to_return(status: 200, body: mock('error'))
+    word = 'wadus'
+    stub(word, :error)
 
     search = Rae.new.search('wadus')
     assert_equal search[:status], 'error'
   end
 
   def test_single_basic
-    stub_request(:post, "#{Rae::SEARCH_URL}?w=amor")
-      .to_return(status: 200, body: mock('single'))
+    word = 'amor'
+    stub(word, :single)
 
-    search = Rae.new.search('amor')
+    search = Rae.new.search(word)
     assert_equal 'success', search[:status]
     assert_equal 'single', search[:type]
 
@@ -34,10 +33,10 @@ class TestRae < Minitest::Test
   end
 
   def test_multiple_basic
-    stub_request(:post, "#{Rae::SEARCH_URL}?w=banco")
-      .to_return(status: 200, body: mock('multiple'))
+    word = 'banco'
+    stub(word, :multiple)
 
-    search = Rae.new.search('banco')
+    search = Rae.new.search(word)
     assert_equal 'success', search[:status]
     assert_equal 'multiple', search[:type]
     assert_equal 4, search[:response].length
@@ -46,6 +45,11 @@ class TestRae < Minitest::Test
   end
 
   private
+
+  def stub(word, mock_name)
+    stub_request(:post, "#{Rae::SEARCH_URL}?w=#{word}")
+      .to_return(status: 200, body: mock(mock_name))
+  end
 
   def mock(mock_name)
     File.read("#{File.expand_path(File.dirname(__FILE__))}/mocks/#{mock_name}.html")

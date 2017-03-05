@@ -58,9 +58,6 @@ The tests are [mocked](https://en.wikipedia.org/wiki/Mock_object) so we run our 
 
 It was added as part as the continuous integrations testing with Travis. They introduced an amazing feature, 💛💚💙💖[scheduled builds](https://blog.travis-ci.com/2016-12-06-the-crons-are-here). Given that rae.es changes the way its [auth method](https://github.com/javierhonduco/nebrija/blob/086f1cc0341cad538b9c72406fe76bbb6d5d4394/lib/nebrija/rae.rb#L38-L49) works from time to time, the tests without being mocked are run in a daily basis so we know if something is broken.
 ### TODO
-* Improve the API.
-* Update clients to use new API.
-* Fix multiple responses.
-* Better doc.
-* Mockless testing.
 * Make the parser more readable.
+* Improve the API.
+* Think on multiple responses and how to address them.

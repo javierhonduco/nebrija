@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
 require 'json'
-require 'pp'
-require 'nebrija'
+require 'nebrija/rae'
 
 if ARGV.length.zero?
   puts 'word argument is required'
   exit -1
 end
-pp Rae.search(ARGV.first)
+
+puts Rae.typeahead(ARGV.first).to_s

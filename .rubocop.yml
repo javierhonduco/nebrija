@@ -1,3 +1,7 @@
+AllCops:
+  TargetRubyVersion: 2.3
+Style/FrozenStringLiteralComment:
+  Enabled: False
 Metrics/LineLength:
   Max: 85
 Metrics/MethodLength:

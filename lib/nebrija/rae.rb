@@ -5,10 +5,11 @@ class Rae
   SEARCH_URL    = 'http://dle.rae.es/srv/fetch'.freeze
   # rubocop:disable LineLength
   USER_AGENT    = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'.freeze
-  OPEN_TIMEOUT, READ_TIMEOUT = 2, 3
+  OPEN_TIMEOUT  = 2
+  READ_TIMEOUT  = 3
 
   def self.search(word)
-    Parser.new(query(word)).parse
+    new.search word
   end
 
   # old method, mantained for compatibility
@@ -19,16 +20,15 @@ class Rae
   def query(word)
     uri = URI.parse "#{SEARCH_URL}?w=#{CGI.escape(word)}".encode('iso-8859-1')
 
+    request = Net::HTTP::Post.new(uri)
+    request['User-Agent'] = USER_AGENT
+    request.form_data = form_data
+
     Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
       http.open_timeout = OPEN_TIMEOUT
       http.read_timeout = READ_TIMEOUT
 
-      request = Net::HTTP::Post.new(uri)
-      request['User-Agent'] = USER_AGENT
-      request.form_data = form_data
-
       response = http.request request
-
       debug(word, uri, response.code, response.body) if ENV['NEBRIJA_DEBUG']
 
       response.body
@@ -44,7 +44,7 @@ class Rae
       'TS017111a7_md': '1',
       'TS017111a7_rf': '0',
       'TS017111a7_ct': '0',
-      'TS017111a7_pd': '0',
+      'TS017111a7_pd': '0'
     }
   end
 
@@ -52,7 +52,7 @@ class Rae
 
   def debug(word, url, status_code, body)
     STDERR.puts <<-DOC
-      [debug] #{ '=' * 40 }
+      [debug] #{'=' * 40}
 
       word:         #{word}
       url:          #{url}

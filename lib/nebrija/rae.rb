@@ -5,7 +5,8 @@ class Rae
   SEARCH_URL    = 'http://dle.rae.es/srv/fetch'.freeze
   # rubocop:disable LineLength
   USER_AGENT    = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'.freeze
-  OPEN_TIMEOUT, READ_TIMEOUT = 2, 3
+  OPEN_TIMEOUT  = 2
+  READ_TIMEOUT  = 3
 
   def self.search(word)
     new.search word
@@ -44,7 +45,7 @@ class Rae
       'TS017111a7_md': '1',
       'TS017111a7_rf': '0',
       'TS017111a7_ct': '0',
-      'TS017111a7_pd': '0',
+      'TS017111a7_pd': '0'
     }
   end
 
@@ -52,7 +53,7 @@ class Rae
 
   def debug(word, url, status_code, body)
     STDERR.puts <<-DOC
-      [debug] #{ '=' * 40 }
+      [debug] #{'=' * 40}
 
       word:         #{word}
       url:          #{url}

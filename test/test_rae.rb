@@ -9,7 +9,7 @@ class TestRae < Minitest::Test
       Nebrija.cli(word)
     end
 
-    assert_match mock_cli.gsub(/\s+/, ''), out.gsub(/\s+/, '')
+    assert_match mock(:cli_output).gsub(/\s+/, ''), out.gsub(/\s+/, '')
   end
 
   def test_error_basic
@@ -52,11 +52,6 @@ class TestRae < Minitest::Test
   end
 
   def mock(mock_name)
-    File.read("#{File.expand_path(File.dirname(__FILE__))}/mocks/#{mock_name}.html")
-  end
-
-  def mock_cli
-    # rubocop:disable LineLength
-    'Sentimiento hacia otra persona que naturalmente nos atrae y que, procurando reciprocidad en el deseo de unión, nos completa, alegra y da energía para convivir, comunicarnos y crear'
+    File.read("#{File.expand_path(File.dirname(__FILE__))}/mocks/#{mock_name}")
   end
 end

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -ex
+
+if [ "$TRAVIS_EVENT_TYPE" = "cron" ]; then
+  echo "=> running non mocked test as environment='cron'"
+  NO_MOCK=1 bundle exec rake test
+else
+  bundle exec rake test
+fi

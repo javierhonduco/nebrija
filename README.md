@@ -25,6 +25,8 @@ The response data can be found in the `response` key which holds a hash with all
 
 An example on how to iterate over the info can be seen in the [CLI code](https://github.com/javierhonduco/nebrija/blob/master/lib/nebrija/cli.rb) file:
 
+Typeahead queries supported too! `Rae#typeahed(word)` returns an array of the suggestions.
+
 ### CLI
 ```bash
 $ nebrija <word>

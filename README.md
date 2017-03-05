@@ -1,48 +1,63 @@
-Nebrija: A rae parser
-=====================
+## Nebrija: A rae parser
 
 [![Build Status](https://travis-ci.org/javierhonduco/nebrija.svg?branch=master)](https://travis-ci.org/javierhonduco/nebrija)
 [![Code Climate](https://img.shields.io/codeclimate/github/javierhonduco/nebrija.svg)](https://codeclimate.com/github/javierhonduco/nebrija)
 
 
-Install
--------
-
+### Installing
 ```bash
 $ gem install nebrija
 ```
 
-API
----
+### Usage
 ```ruby
 require 'nebrija'
-res = Rae.new.search('word/id')
+res = Rae.search('word/id') # e.g. Rae.search('amigo')
+
 puts res # prints the results
 ```
 
-`HTTPRae` returns a hash where the key `status` can be `error`|`success`.
+`Rae#search` returns a hash where the key `status` can be [`error`|`success`].
 
-If the request is succesful, the key `type` indicates whether the result type is a single word or multiple  with `single`|`multiple`.
+If the request is succesful, the key `type` indicates whether the result type is a single word or multiple  with [`single`|`multiple`].
 
-The response data can be found in the `response` key which holds an array.
+The response data can be found in the `response` key which holds a hash with all the information.
 
-The response data is formatted as shown in the [nebrija/cli](https://github.com/javierhonduco/nebrija/blob/master/lib/nebrija/cli.rb) file:
+An example on how to iterate over the info can be seen in the [cli code](https://github.com/javierhonduco/nebrija/blob/master/lib/nebrija/cli.rb) file:
 
-CLI searching
----------
+### CLI
 ```bash
 $ nebrija <word>
 ```
 
-Maybe you are lazy and want to add an alias to `rae` or `es` like I do :)
+If you feel it is too cumbersome to type, you can add an alias :)
 
-Friend projects/ project using this gem
----------------------------------------
+### Projects using this gem
 * [Rae downloader](https://github.com/raul/rae-downloader) by [@raul](https://github.com/raul)
 * [Dulcinea: a nebrija frontend](https://github.com/javierhonduco/dulcinea)
 
-TODO
-----
+### Contributing
+Feel free to submit any issue or PR 😃.
+
+In order to test your changes:
+```bash
+# you can run the tests
+$ bundle exec rake [test]
+# run the CLI
+$ bundle exec nebrija word-to-be-searched
+# run the "debug" CLI, which pretty prints the resulting hash
+$ bundle exec debug word-to-be-searched
+```
+
+Additionlly, you can get some debug traces in stderr via the `NEBRIJA_DEBUG` environment variable.
+
+When set, it will output the requested word, the generated URL, and the HTTP status code that it got from the server.
+If you wish to see the returned body's output as well, you can set it to `2`.
+
+The tests are [mocked](https://en.wikipedia.org/wiki/Mock_object) so we run our tests using some already downloaded answers from rae.es. However, in some cases one would like to bypass the mocks and use the real webpages instead. You can achieve that by setting the `NO_MOCK` env var when runnig your tests.
+
+It was added as part as the continuous integrations testing with Travis. They introduced an amazing feature 💙, [scheduled builds](https://blog.travis-ci.com/2016-12-06-the-crons-are-here). Given that rae.es changes the way its [auth method](https://github.com/javierhonduco/nebrija/blob/086f1cc0341cad538b9c72406fe76bbb6d5d4394/lib/nebrija/rae.rb#L38-L49) works from time to time, the tests without being mocked are runned in a daily basis so we know if something is broken.
+### TODO
 * Improve the API.
 * Update clients to use new API.
 * Fix multiple responses.

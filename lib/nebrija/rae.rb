@@ -7,6 +7,11 @@ class Rae
   USER_AGENT    = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'.freeze
   OPEN_TIMEOUT, READ_TIMEOUT = 2, 3
 
+  def self.search(word)
+    Parser.new(query(word)).parse
+  end
+
+  # old method, mantained for compatibility
   def search(word)
     Parser.new(query(word)).parse
   end

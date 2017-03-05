@@ -20,16 +20,15 @@ class Rae
   def query(word)
     uri = URI.parse "#{SEARCH_URL}?w=#{CGI.escape(word)}".encode('iso-8859-1')
 
+    request = Net::HTTP::Post.new(uri)
+    request['User-Agent'] = USER_AGENT
+    request.form_data = form_data
+
     Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
       http.open_timeout = OPEN_TIMEOUT
       http.read_timeout = READ_TIMEOUT
 
-      request = Net::HTTP::Post.new(uri)
-      request['User-Agent'] = USER_AGENT
-      request.form_data = form_data
-
       response = http.request request
-
       debug(word, uri, response.code, response.body) if ENV['NEBRIJA_DEBUG']
 
       response.body

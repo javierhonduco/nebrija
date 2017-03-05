@@ -20,7 +20,7 @@ class TestRae < Minitest::Test
     word = 'wadus'
     stub(word, :error)
 
-    search = Rae.new.search('wadus')
+    search = Rae.search('wadus')
     assert_equal search[:status], 'error'
   end
 
@@ -28,7 +28,7 @@ class TestRae < Minitest::Test
     word = 'amor'
     stub(word, :single)
 
-    search = Rae.new.search(word)
+    search = Rae.search(word)
     assert_equal 'success', search[:status]
     assert_equal 'single', search[:type]
 
@@ -40,7 +40,7 @@ class TestRae < Minitest::Test
     word = 'banco'
     stub(word, :multiple)
 
-    search = Rae.new.search(word)
+    search = Rae.search(word)
     assert_equal 'success', search[:status]
     assert_equal 'multiple', search[:type]
     assert_equal 4, search[:response].length

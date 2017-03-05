@@ -46,7 +46,7 @@ $ bundle exec rake [test]
 # run the CLI
 $ bundle exec nebrija word-to-be-searched
 # run the "debug" CLI, which pretty prints the resulting hash
-$ bundle exec debug word-to-be-searched
+$ bundle exec bin/debug word-to-be-searched
 ```
 
 Additionally, you can get some debug traces in stderr via the `NEBRIJA_DEBUG` environment variable.

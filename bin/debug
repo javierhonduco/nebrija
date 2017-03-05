@@ -4,4 +4,4 @@ require 'json'
 require 'pp'
 require 'nebrija'
 
-pp Rae.new.search(ARGV.first)
+pp Rae.search(ARGV.first)

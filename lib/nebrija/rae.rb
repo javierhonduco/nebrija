@@ -8,7 +8,7 @@ class Rae
   OPEN_TIMEOUT, READ_TIMEOUT = 2, 3
 
   def self.search(word)
-    Parser.new(query(word)).parse
+    new.search word
   end
 
   # old method, mantained for compatibility

@@ -48,6 +48,28 @@ class TestRae < Minitest::Test
     assert_equal 'banco central.', search[:response][:other_meanings][1][:expression]
   end
 
+  def test_typeahead
+    word = 'amor'
+
+    stub_request(:get, "#{Rae::TYPEAHEAD_URL}&q=#{word}")
+      .to_return(status: 200, body: mock(:typeahead))
+
+    search = Rae.typeahead(word)
+    assert_equal 10, search.length
+    assert_equal ['amor', 'amoragar', 'amoral', 'amoralidad', 'amoralismo', 'amor al uso', 'amoratada', 'amoratado', 'amoratar', 'amoratarse'], search
+  end
+
+  def test_empty_typeahead
+    word = 'hiomglol'
+
+    stub_request(:get, "#{Rae::TYPEAHEAD_URL}&q=#{word}")
+      .to_return(status: 200, body: mock(:typeahead_empty))
+
+    search = Rae.typeahead(word)
+    assert_equal 0, search.length
+  end
+
+
   private
 
   def stub(word, mock_name)

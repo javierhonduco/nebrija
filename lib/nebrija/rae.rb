@@ -24,6 +24,8 @@ class Rae
 
       response = http.request request
 
+      debug(word, uri, response.code, response.body) if ENV['NEBRIJA_DEBUG']
+
       response.body
     end
   end
@@ -39,5 +41,19 @@ class Rae
       'TS017111a7_ct': '0',
       'TS017111a7_pd': '0',
     }
+  end
+
+  private
+
+  def debug(word, url, status_code, body)
+    STDERR.puts <<-DOC
+      [debug] #{ '=' * 40 }
+
+      word:         #{word}
+      url:          #{url}
+      status_code:  #{status_code}
+    DOC
+    STDERR.puts "body: `#{body}`" if ENV['NEBRIJA_DEBUG'].to_i == 2
+    STDERR.puts
   end
 end

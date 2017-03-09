@@ -1,6 +1,7 @@
 ## Nebrija: A rae parser
 
 [![Build Status](https://travis-ci.org/javierhonduco/nebrija.svg?branch=master)](https://travis-ci.org/javierhonduco/nebrija)
+[![Gem Version](https://badge.fury.io/rb/nebrija.svg)](https://badge.fury.io/rb/nebrija)
 [![Code Climate](https://img.shields.io/codeclimate/github/javierhonduco/nebrija.svg)](https://codeclimate.com/github/javierhonduco/nebrija)
 
 

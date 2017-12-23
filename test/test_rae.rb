@@ -44,8 +44,8 @@ class TestRae < Minitest::Test
     assert_equal 'success', search[:status]
     assert_equal 'multiple', search[:type]
     assert_equal 4, search[:response].length
-    assert_equal 'banco azul.', search[:response][:other_meanings][0][:expression]
-    assert_equal 'banco central.', search[:response][:other_meanings][1][:expression]
+    assert_equal 'banco azul', search[:response][:other_meanings][0][:expression]
+    assert_equal 'banco central', search[:response][:other_meanings][1][:expression]
   end
 
   def test_typeahead
